@@ -32,8 +32,8 @@ CALCULATE(
     SAMEPERIODLASTYEAR(Dim_Calendario[Date])
 )
 
-Faturamento Ano Anterior = 
-CALCULATE(
-    [Total Faturamento], 
-    SAMEPERIODLASTYEAR(Dim_Calendario[Date])
-)
+Crescimento Ano à Ano % = 
+VAR FaturamentoAtual = [Total Faturamento]
+VAR FaturamentoPassado = [Faturamento Ano Anterior]
+RETURN
+DIVIDE(FaturamentoAtual - FaturamentoPassado, FaturamentoPassado, 0)
