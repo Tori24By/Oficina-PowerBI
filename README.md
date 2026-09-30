@@ -15,3 +15,25 @@ ADDCOLUMNS (
     "Trimestre", "T" & FORMAT([Date], "q"),
     "Dia da Semana", FORMAT([Date], "dddd")
 )
+
+
+# Tabela _Medidas:
+Total Unidades = SUM(Fato_Vendas[Quantidade])
+Total Pedidos = DISTINCTCOUNT(Fato_Vendas[ID_Pedido])
+Total Custo = SUM(Fato_Vendas[Custo_Total])
+Total Lucro = [Total Faturamento] - [Total Custo]
+Total Faturamento = SUM(Fato_Vendas[Valor_Total])
+Ticket Medio = DIVIDE([Total Faturamento], [Total Pedidos], 0)
+Margem Lucro % = DIVIDE([Total Lucro], [Total Faturamento], 0)
+
+Faturamento Ano Anterior = 
+CALCULATE(
+    [Total Faturamento], 
+    SAMEPERIODLASTYEAR(Dim_Calendario[Date])
+)
+
+Faturamento Ano Anterior = 
+CALCULATE(
+    [Total Faturamento], 
+    SAMEPERIODLASTYEAR(Dim_Calendario[Date])
+)
